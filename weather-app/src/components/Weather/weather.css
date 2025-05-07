@@ -1,0 +1,51 @@
+.weather-section {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 5px;
+}
+
+.weather-info {
+  grid-column: 2 / 7;
+}
+
+.weather-info > h3 {
+  grid-row: 1 / 1;
+}
+
+.weather-info > h4 {
+  font-family: "Courier New", Courier, monospace;
+}
+
+.weather-info > p {
+  font-family: "Courier New", Courier, monospace;
+}
+.weather-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 25px;
+}
+
+.weather-info button,
+.weather-info button:active,
+.weather-info button:focus,
+.weather-info button:focus-visible {
+  font-size: large;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  transition: font-size 0.3s ease-in-out;
+  grid-column: 13 / 13;
+}
+
+.weather-info button:hover {
+  font-size: 30px;
+  transition: font-size 0.3s ease-in-out;
+}
+
+.forecast-info {
+  font-family: "Courier New", Courier, monospace;
+  grid-column: 8 / 13;
+  padding-left: 30px;
+}
