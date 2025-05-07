@@ -1,2 +1,1 @@
-# V-der-App
-Väder-App med Leaflet &amp; Openweather
+Väder App med Leaflet &amp; OpenwWather
