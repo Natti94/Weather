@@ -1,5 +1,4 @@
 {
-  "home": "https://github.com/Natti94/Weather_Leaflet_OpenWeather",
   "name": "weather-app",
   "private": true,
   "version": "0.0.0",
@@ -8,8 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "deploy": "gh-pages -d dist"
+    "preview": "vite preview"
   },
   "dependencies": {
     "dotenv": "^16.5.0",
