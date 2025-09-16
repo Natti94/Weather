@@ -1,4 +1,6 @@
-# Weather
+# Weather App
+
+> **Note:** This repository contains the finalized version of the project, forked from another of my repositories. As a result, there are few or no commits here aside from the initial import.
 
 A simple weather and map application built with React + Vite, Leaflet, and the OpenWeather API. It lets you:
 
