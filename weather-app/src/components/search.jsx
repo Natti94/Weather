@@ -1,15 +1,13 @@
 import { useState } from "react";
-import { SearchData } from "../../Services/Search/search"
-import "./search.css";
+import { SearchData } from "../services/search";
 
-function Search({ setSearchInput, setMarkedPosition }) {
+function Search({ setMarkedPosition }) {
   const [query, setQuery] = useState("");
   async function handleSearch(e) {
     e.preventDefault();
     if (!query.trim()) return;
     const data = await SearchData(query);
     if (data) {
-      setSearchInput({ lat: data.lat, lng: data.lon });
       setMarkedPosition({ lat: data.lat, lng: data.lon });
     } else {
       alert("Location not found!");
@@ -18,7 +16,7 @@ function Search({ setSearchInput, setMarkedPosition }) {
   return (
     <form onSubmit={handleSearch}>
       <input
-        className="search"
+        className="wf-search"
         type="text"
         placeholder="Search location..."
         value={query}

@@ -1,7 +1,7 @@
 function Favourite({ favourites = [] }) {
   return (
-    <div>
-      <h3>⭐ Favourite Locations</h3>
+    <div className="wf-favourites">
+      <h3> Favourite Locations ⭐</h3>
       {favourites.length === 0 ? (
         <p>you have no favourites..</p>
       ) : (
