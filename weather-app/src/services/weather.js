@@ -5,7 +5,7 @@ export async function WeatherData(lat, lon) {
     const response = await fetch(url);
     if (!response.ok) return null;
     return await response.json();
-  } catch (error) {
+  } catch {
     return null;
   }
 }
@@ -16,7 +16,7 @@ export async function ForeCastData(lat, lon) {
     const response = await fetch(url);
     if (!response.ok) return null;
     return await response.json();
-  } catch (error) {
+  } catch {
     return null;
   }
 }
