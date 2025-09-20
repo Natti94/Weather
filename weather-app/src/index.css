@@ -417,12 +417,13 @@ button:focus-visible {
 
 @media (max-width: 700px), (max-aspect-ratio: 3/4) {
   .TopRow {
-    flex-direction: column;
-    gap: 10px;
+  flex-direction: column;
+  gap: 8px;
   }
   .Map {
-    margin: 8px 8px 0 8px;
-    align-self: stretch;
+  margin: 8px 0 0 0;    
+  padding: 0 8px;       
+  align-self: stretch;
   }
   .leaflet-container {
     width: 100%;
@@ -453,7 +454,7 @@ button:focus-visible {
     margin: 8px;
   }
   .wf-forecast > div {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: 1fr;  
   }
   .forecast-card {
     margin: 6px;
