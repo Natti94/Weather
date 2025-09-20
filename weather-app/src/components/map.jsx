@@ -12,6 +12,7 @@ function MapUpdater({ position }) {
   }, [position, map]);
   return null;
 }
+
 function Map({ markedPosition, setMarkedPosition, myPosition }) {
   const center = myPosition || [51.505, -0.09];
   return (

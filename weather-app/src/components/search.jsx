@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { SearchData } from "../services/search";
 
-function Search({ setMarkedPosition }) {
+function Search({ setMarkedPosition, setMyPosition, setLocationFetched }) {
   const [query, setQuery] = useState("");
   async function handleSearch(e) {
     e.preventDefault();
@@ -9,6 +9,12 @@ function Search({ setMarkedPosition }) {
     const data = await SearchData(query);
     if (data) {
       setMarkedPosition({ lat: data.lat, lng: data.lon });
+      if (typeof setMyPosition === "function") {
+        setMyPosition([data.lat, data.lon]);
+      }
+      if (typeof setLocationFetched === "function") {
+        setLocationFetched(true);
+      }
     } else {
       alert("Location not found!");
     }

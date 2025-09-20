@@ -7,6 +7,7 @@ function Location({ setMyPosition, setLocationFetched }) {
     setLocationFetched(false);
     getUserLocation(setMyPosition, setLoading, setLocationFetched);
   };
+
   return (
     <div>
       <button

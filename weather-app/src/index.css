@@ -1,90 +1,69 @@
-:root {
+body {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
-  color: rgba(255, 255, 255, .87);
-  background: #242424;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  color: rgba(255, 255, 255, .9);
+  background: radial-gradient(1200px 800px at 10% -10%, #2f2f2f 0%, #1f1f1f 55%, #181818 100%);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-body {
+  --accent: #646cff;
+  --accent-hover: #747bff;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --shadow-1: 0 6px 18px rgba(0, 0, 0, .28);
+  --shadow-2: 0 10px 30px rgba(0, 0, 0, .45);
+  --glass: rgba(17, 17, 17, .6);
   --card-min-width: 180px;
   --card-min-height: 180px;
   --card-padding-y: .55rem;
   --card-padding-x: .65rem;
   --card-border: 1px solid rgba(255, 255, 255, .15);
-  --card-bg: rgba(0, 0, 0, .15);
-  --card-shadow: none;
+  --card-bg: rgba(17, 17, 17, .85);
+  --card-shadow: var(--shadow-1);
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
+  color: var(--accent);
   text-decoration: none;
 }
 
 a:hover {
-  color: #535bf2;
+  color: var(--accent-hover);
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: clamp(2.2rem, 2vw + 1.6rem, 3.2rem);
   line-height: 1.1;
   margin: .2em 0 .4em;
 }
 
 button {
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   border: 1px solid transparent;
   padding: .6em 1.2em;
   font-size: 1em;
   font-weight: 500;
-  font-family: inherit;
-  background: #1a1a1a;
+  background: linear-gradient(180deg, #1f1f1f 0%, #141414 100%);
+  color: #fff;
   cursor: pointer;
-  transition: border-color .25s;
+  transition: border-color .25s, transform .12s ease-in-out, box-shadow .2s ease-in-out;
+  box-shadow: var(--shadow-1);
 }
 
 button:hover {
-  border-color: #646cff;
+  border-color: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-2);
 }
 
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme:light) {
-  :root {
-    color: #213547;
-    background: #fff;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background: #f9f9f9;
-  }
-}
-
-.Page {
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr);
-  gap: 1.5rem;
-  padding: 1rem 1.5rem 2.5rem;
-  max-width: 1400px;
-  margin: 0 auto;
-  box-sizing: border-box;
-  align-items: start;
 }
 
 .Main {
@@ -93,44 +72,81 @@ button:focus-visible {
   gap: 1.25rem;
 }
 
+.TopRow {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.TopRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .5rem;
+  position: relative;
+  padding-top: 8px;
+  padding-left: 12px;
+  margin-left: 6px;
+}
+
+.TopRight::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255, 255, 255, .15);
+}
+
+.DividerH {
+  width: 100%;
+  border: none;
+  height: 1px;
+  background: rgba(255, 255, 255, .15);
+  margin: .5rem 0;
+}
+
+.TopRight .location-button {
+  white-space: nowrap;
+  border: var(--card-border);
+}
+
+.TopRight .location-button:hover {
+  border-color: rgba(255, 255, 255, .25);
+}
+
 .ControlsAndMap {
   display: grid;
-  grid-template-columns: 300px 1fr;
-  grid-template-rows: auto auto;
-  grid-template-areas:
-    "controls map"
-    "controls map";
-  gap: 1rem;
+  grid-template-columns: 1fr;
+  gap: .9rem;
   align-items: start;
 }
 
-.Controls .wf-weather-info {
-  margin-top: .25rem;
-}
-
-.location-button {
-  margin-left: -3px;
-  padding: 0.5rem 1rem;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  background: #1a1a1a;
-  color: #fff;
-  cursor: pointer;
-  transition: border-color .25s;
-}
-
 .Controls {
+  grid-area: controls;
   display: flex;
   flex-direction: column;
   gap: .75rem;
-  grid-area: controls;
-  padding-right: .5rem;
   align-items: flex-start;
 }
 
 .Map {
-  position: relative;
   grid-area: map;
+  position: relative;
+  display: block;
+  margin-top: 8px;
+  margin-left: 8px;
+  align-self: flex-start;
+}
+
+
+.leaflet-container {
+  width: clamp(300px, 80vmin, 900px);
+  height: clamp(220px, 48vmin, 420px);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-2);
+  background: #222;
 }
 
 .MapActions {
@@ -138,131 +154,48 @@ button:focus-visible {
   top: 8px;
   right: 8px;
   display: flex;
-  gap: 8px;
+  gap: 6px;
+  flex-wrap: nowrap;
   z-index: 1001;
 }
 
 .MapActions button {
-  background: rgba(0, 0, 0, .55);
+  background: var(--glass);
   color: #fff;
   border: 1px solid rgba(255, 255, 255, .2);
-  padding: .35rem .5rem;
-  border-radius: 8px;
+  padding: .32rem .48rem;
+  border-radius: 10px;
   font-size: 1rem;
-}
-
-.MapActions button:hover {
-  border-color: #fff;
-}
-
-.MapActions button[title] {
-  cursor: help;
-}
-
-.RightPane {
-  display: flex;
-  flex-direction: column;
-  gap: .75rem;
-  grid-area: map;
-}
-
-.Weather {
-  display: flex;
-  flex-direction: column;
-  gap: .5rem;
-}
-
-.Sidebar {
-  display: flex;
-  margin: 0 0 .25rem 0;
-  gap: 1rem;
-  align-items: stretch;
-}
-
-.Favourite {
-  margin-top: -27px;
-  display: flex;
-  flex-direction: column;
-  gap: .75rem;
-}
-
-.Favourite>button {
-  align-self: flex-start;
-}
-
-.FavouriteActions {
-  display: flex;
-  gap: .5rem;
-  align-items: center;
-}
-
-.FavouriteActions button {
-  font-size: 1.25rem;
-  line-height: 1;
-  padding: .25rem .5rem;
-}
-
-.Sidebar .wf-favourites {
-  margin-top: 8px;
-}
-
-.FavouriteMobile {
-  display: none;
-}
-
-.FavouriteMobile .wf-favourites ul {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-}
-
-.FavouriteMobile .wf-favourites li {
-  flex: initial;
-  min-width: 0;
-  max-width: none;
-  width: 96%;
-  margin: 0 auto;
-}
-
-.FavouriteMobile .wf-favourites {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.FavouriteMobile .wf-favourites li {
-  min-height: calc(var(--card-min-height) + 20px);
-}
-
-.leaflet-container {
-  width: 100%;
-  height: 420px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .3);
-  background: #222;
+  box-shadow: var(--shadow-1);
 }
 
 .wf-search {
   position: absolute;
-  bottom: 10px;
+  bottom: 20px;
   left: 10px;
   z-index: 1000;
   padding: .5rem .75rem;
-  border-radius: 6px;
-  border: 1px solid #646cff;
-  background: #111;
-  color: inherit;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, .18);
+  background: var(--glass);
+  color: #fff;
+  box-shadow: var(--shadow-1);
+  max-width: calc(100% - 16px);
+}
+
+.wf-search::placeholder {
+  color: rgba(255, 255, 255, .85);
+}
+
+.Sidebar {
+  display: none;
 }
 
 .wf-favourites {
-  background: rgba(255, 255, 255, .05);
-  padding: 1rem 1.25rem;
-  border-radius: 8px;
-  backdrop-filter: blur(4px);
-}
-
-.wf-favourites h3 {
-  margin: 0 0 .5rem;
-  line-height: 1.2;
+  background: transparent;
+  color: #fff;
+  padding: .35rem .25rem;
+  border-radius: var(--radius-md);
 }
 
 .wf-favourites>h3 {
@@ -270,6 +203,7 @@ button:focus-visible {
   align-items: center;
   gap: .4rem;
   font-size: 1.05rem;
+  margin: 0 0 .5rem;
 }
 
 .wf-favourites ul {
@@ -279,50 +213,27 @@ button:focus-visible {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  justify-content: flex-start;
-  align-items: stretch;
 }
 
 .wf-favourites li {
   border: var(--card-border);
   background: var(--card-bg);
-  border-radius: 8px;
+  color: #fff;
+  border-radius: var(--radius-md);
   padding: var(--card-padding-y) var(--card-padding-x);
   flex: 1 1 var(--card-min-width);
   min-width: var(--card-min-width);
-  max-width: none;
   min-height: var(--card-min-height);
   box-shadow: var(--card-shadow);
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  transition: transform .12s ease-in-out, box-shadow .15s ease-in-out;
 }
 
-.wf-favourites img {
-  width: 36px;
-  height: 36px;
-}
-
-.wf-favourites li h3 {
-  margin: .2rem 0 .4rem;
-}
-
-.wf-favourites li h4 {
-  margin: .25rem 0;
-  font-size: 1rem;
-}
-
-.wf-favourites li p {
-  margin: .2rem 0;
-}
-
-.wf-favourites li>*:last-child {
-  margin-bottom: 0;
-}
-
-.Controls>button {
-  align-self: flex-start;
-  margin-left: 0;
+.wf-favourites li:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-2);
 }
 
 .wf-weather {
@@ -332,7 +243,12 @@ button:focus-visible {
 }
 
 .wf-weather-info {
-  padding-left: 0;
+  padding: .6rem .7rem;
+  background: var(--card-bg);
+  color: #fff;
+  border: var(--card-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--card-shadow);
 }
 
 .wf-weather-icons {
@@ -343,7 +259,7 @@ button:focus-visible {
 .wf-weather-icons h3,
 .wf-weather-icons button {
   margin: 0 0 .25rem 0;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   line-height: 1.1;
 }
 
@@ -363,52 +279,49 @@ button:focus-visible {
   margin-top: .25rem;
 }
 
-.wf-weather-info button,
-.wf-weather-info button:active,
-.wf-weather-info button:focus,
-.wf-weather-info button:focus-visible {
-  font-size: large;
-  background: transparent;
-  outline: none;
-  border: none;
-  box-shadow: none;
-  transition: font-size .3s ease-in-out;
-}
-
-.wf-weather-info button:hover {
-  font-size: large;
-}
-
-
 .wf-forecast {
-  font-family: "Courier New", Courier, monospace;
   grid-column: 1 / -1;
-  padding: 8px 6px 0;
-  margin-top: .1rem;
+  margin: 10px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.wf-forecast h4 {
+  font-style: italic;
+  text-align: center;
 }
 
 .wf-forecast>div {
-  display: flex;
-  min-height: var(--card-min-height);
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
+  column-gap: 0;
+  row-gap: 0;
+  justify-items: stretch;
   align-items: stretch;
-  gap: 12px;
 }
 
 .forecast-card {
   background: var(--card-bg);
+  color: #fff;
   border: var(--card-border);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   padding: var(--card-padding-y) var(--card-padding-x);
-  flex: 0 0 var(--card-min-width);
-  min-width: var(--card-min-width);
-  max-width: var(--card-min-width);
+  margin: 8px;
+  font-size: 15px;
+  width: auto;
+  min-width: 0;
+  max-width: none;
   min-height: var(--card-min-height);
   box-shadow: var(--card-shadow);
   display: flex;
   flex-direction: column;
+  align-items: center;
   overflow: hidden;
+  transition: transform .12s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.forecast-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-2);
 }
 
 .forecast-card h4 {
@@ -420,106 +333,83 @@ button:focus-visible {
   margin: .2rem 0;
 }
 
-.forecast-card>*:last-child {
-  margin-bottom: 0;
-}
-
 .forecast-card img {
   width: 36px;
   height: 36px;
 }
 
-.wf-map-popup {
-  z-index: 1000;
+.FavouriteMobile {
+  display: block;
 }
 
-@media (max-width:1100px) {
-  .Page {
-    grid-template-columns: 1fr;
-    grid-auto-flow: row;
-  }
-
-  .Main {
-    grid-column: 1 / -1;
-    grid-row: 1;
-  }
-
-  .Sidebar {
-    grid-column: 1 / -1;
-    grid-row: 3;
-    width: 100%;
-    display: none;
-  }
-
-  .ControlsAndMap {
-    grid-template-columns: 1fr;
-  }
-
-  .RightPane {
-    grid-area: auto;
-  }
-
-  .FavouriteMobile {
-    display: block;
-  }
-
-  .wf-weather {
-    grid-template-columns: repeat(6, 1fr);
-  }
-
-  .wf-weather-info {
-    grid-column: 1 / -1;
-  }
-
-  .wf-forecast {
-    grid-column: 1 / -1;
-    padding-left: 0;
-  }
+.TopRight .wf-favourites {
+  padding: 0;
+  width: 100%;
+  --card-min-height: 120px;
+  --card-padding-y: .4rem;
+  --card-padding-x: .5rem;
 }
 
-@media (max-width:650px) {
-  .leaflet-container {
-    height: 320px;
-  }
-
-  h1 {
-    font-size: 2.2em;
-  }
+.TopRight .wf-favourites>h3 {
+  margin: 0 0 .35rem;
+  font-size: 1rem;
 }
 
-@media (max-width:1280px) and (min-width:1101px) {
-  .Page {
-    grid-template-columns: 1fr;
-    grid-auto-flow: row;
-  }
-
-  .Main {
-    grid-column: 1 / -1;
-    grid-row: 1;
-  }
-
-  .Sidebar {
-    grid-column: 1 / -1;
-    grid-row: 3;
-    width: 100%;
-    display: none;
-  }
-
-  .ControlsAndMap {
-    grid-template-columns: 1fr;
-  }
-
-  .FavouriteMobile {
-    display: block;
-  }
+.TopRight .wf-favourites ul {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  width: 100%;
 }
 
-@media (max-width:1280px) {
-  .wf-favourites>h3 {
-    font-size: 1rem;
-  }
+.TopRight .wf-favourites li {
+  margin: 0;
+  width: 100%;
+  flex: none;
+  min-height: auto;
+  padding: .6rem .7rem;
+  box-sizing: border-box;
+}
 
-  .wf-favourites li h3 {
-    font-size: .95rem;
-  }
+.TopRight .wf-favourites,
+.TopRight .wf-favourites ul {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.TopRight .wf-favourites li h3 {
+  margin: 0 0 .25rem;
+  font-size: 1rem;
+}
+
+.wf-favourites.compact li {
+  min-height: var(--card-min-height);
+  padding: var(--card-padding-y) var(--card-padding-x);
+}
+
+.wf-favourites.compact .fav-name {
+  font-size: 1rem;
+}
+
+.wf-favourites.compact .fav-row {
+  display: flex;
+  gap: .45rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.wf-favourites.compact .fav-temp,
+.wf-favourites.compact .fav-desc {
+  font-size: .95rem;
+}
+
+.wf-favourites.compact img {
+  width: 30px;
+  height: 30px;
+  margin-top: .25rem;
+}
+
+.wf-favourites.compact h3,
+.wf-favourites.compact .fav-name {
+  text-align: center;
 }

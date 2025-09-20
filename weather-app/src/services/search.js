@@ -2,6 +2,7 @@ export async function SearchData(query) {
   const apiUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
     query
   )}&addressdetails=1`;
+
   try {
     const response = await fetch(apiUrl);
     if (!response.ok) throw new Error("Failed to fetch search data");

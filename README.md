@@ -1,137 +1,93 @@
 # Weather App
 
-> **Note:** This repository contains the finalized version of the project, forked from another of my repositories. As a result, there are few or no commits here aside from the initial import.
+> Note: This repository contains the finalized version of the project, forked from another of my repositories. Therefore you will see few commits aside from the initial import.
 
-A simple weather and map application with search and favourites. Built with React + Vite, Leaflet, and the OpenWeather API. Search any place, get your location, see current conditions and a compact 5‑day forecast, and save favourite spots.
+A simple weather and map application with search and favourites. Built with React + Vite, Leaflet, and OpenWeather. Search any place, get your location, view current conditions and a compact 5‑day forecast, and save favourite spots.
 
 ## Features
 
-- Search any place (via Nominatim) and move the map
-- Fetch your current location using the browser’s Geolocation API
-- View current weather and a compact 5-day forecast
-- Save locations as favourites and refresh them later
-- Interactive map powered by Leaflet (OpenStreetMap tiles)
-- Mobile-friendly, responsive styles using CSS `clamp()` and scoped selectors
-- Clean separation of concerns: map, weather, search, and favourites
+- Search any place (Nominatim) — centers map and drops a marker
+- Get My Location — centers map, drops a marker using the browser Geolocation API
+- Current weather card and compact 5‑day forecast
+- Save favourite locations and refresh their data later
+- Interactive map (Leaflet + OpenStreetMap tiles)
+- Modern, responsive styling using CSS clamp() and scoped selectors
 
-## Project Structure
+## Project structure
 
 ```
 weather-app/
 	public/
-		_redirects           # SPA fallback (/* -> /index.html)
+		_redirects
 		favicon.ico
 	src/
-	App.jsx              # App shell: header, map, weather, favourites
-	index.css            # Global styles (scoped map + panels)
-		main.jsx             # Entry point (React + Vite)
+		App.jsx              # App shell: map, location info, favourites, forecast
+		index.css            # Global styles
+		main.jsx             # React + Vite entry
 		components/
 			click.jsx          # Map click handler
-			favourite.jsx      # Favourites panel
-			location.jsx       # Location/weather card
+			favourite.jsx      # Favourites list (compact under Location)
+			location.jsx       # Get My Location button
 			map.jsx            # Map view (Leaflet)
 			marker.jsx         # Map marker
 			search.jsx         # Search bar (Nominatim)
-			weather.jsx        # Weather/forecast display
+			weather.jsx        # Current + forecast views
 		services/
-			location.js        # Geolocation and reverse geocoding
+			location.js        # Geolocation helpers
 			search.js          # Nominatim search API
 			weather.js         # OpenWeather API
-	index.html             # Vite HTML
-	vite.config.js         # Vite config
-	package.json           # Scripts and dependencies
-	eslint.config.js       # ESLint config
-	README.md              # Project documentation
+	index.html
+	vite.config.js
+	package.json
+	eslint.config.js
 ```
 
-## Getting Started
+## Getting started
 
-From this folder (`weather-app/`):
+Run these inside `weather-app/`:
 
 ```powershell
 npm install
 npm run dev
 ```
 
-Then open the printed local URL in your browser.
+Open the printed local URL in your browser.
 
-### Build & Preview
-
-```powershell
-npm run build
-npm run preview
-```
-
-- Output goes to `dist/`.
-- Files in `public/` (including `_redirects`) are copied to `dist/` automatically by Vite.
-
-## Environment Variables
-
-Create a `.env` file in `weather-app/` with your OpenWeather API key:
-
-```
-VITE_OPENWEATHER_API_KEY=your_openweather_api_key
-```
-
-## Deploying to Netlify
-
-- Build command: `npm run build`
-- Publish directory: `dist`
-- Ensure `_redirects` exists in `public/` (it will be copied to `dist/_redirects`).
-
-## Editing APIs / Adding Providers
-
-OpenWeather current and forecast calls are encapsulated in `src/services/weather.js`. Geocoding and search are in `src/services/location.js` and `src/services/search.js`.
-
-- To change providers, swap implementations in these files while preserving exported function names.
-- If adding a new provider, add a new service file and wire it where consumed in components.
-
-## Notes & Troubleshooting
-
-- Be mindful of OpenWeather and Nominatim usage policies and rate limits.
-- If tiles or searches fail, check your network and API key configuration.
-- Styles are intentionally scoped to avoid leaking into other pages.
-
-## Getting Started
-
-From this folder (`weather-app/`):
-
-```powershell
-npm install
-npm run dev
-```
-
-Then open the printed local URL in your browser.
-
-### Build & Preview
+### Build & preview
 
 ```powershell
 npm run build
 npm run preview
 ```
 
-- Output goes to `dist/`.
-- Files in `public/` (including `_redirects`) are copied to `dist/` automatically by Vite.
+- Build output goes to `dist/`.
+- Files in `public/` (including `_redirects`) are copied to `dist/` by Vite.
 
-## Environment Variables
+## Environment variables
 
-Create a `.env` file in `weather-app/` with your OpenWeather API key:
+Create `weather-app/.env` with your OpenWeather API key:
 
 ```
 VITE_OPENWEATHER_API_KEY=your_openweather_api_key
 ```
 
-## Deploying
+## Deploying (Netlify)
 
 - Build command: `npm run build`
 - Publish directory: `dist`
-- Ensure `_redirects` exists in `public/` (it will be copied to `dist/_redirects`).
+- Ensure `public/_redirects` exists (it is copied to `dist/_redirects`).
 
-## Notes & Troubleshooting
+## Editing APIs / adding providers
 
-- Be mindful of OpenWeather and Nominatim usage policies and rate limits.
+- OpenWeather calls live in `src/services/weather.js`.
+- Search/geocoding lives in `src/services/search.js` and `src/services/location.js`.
+- To change providers, swap implementations while preserving the exported functions; or add new service files and wire them where used.
+
+## Notes & troubleshooting
+
+- Be mindful of OpenWeather and Nominatim rate limits and usage policies.
 - If tiles or searches fail, check your network and API key configuration.
-- Styles are intentionally scoped to avoid leaking into other pages.
+- Styles are scoped to this app to avoid leaking to other pages.
 
 ## License
 
