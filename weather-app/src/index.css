@@ -413,3 +413,54 @@ button:focus-visible {
 .wf-favourites.compact .fav-name {
   text-align: center;
 }
+
+
+@media (max-width: 700px), (max-aspect-ratio: 3/4) {
+  .TopRow {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .Map {
+    margin: 8px 8px 0 8px;
+    align-self: stretch;
+  }
+  .leaflet-container {
+    width: 100%;
+    height: clamp(240px, 52vh, 520px);
+  }
+  .TopRight {
+    padding-top: 0;
+    padding-left: 0;
+    margin-left: 0;
+  }
+  .TopRight::before {
+    display: none;
+  }
+  .TopRight .location-button {
+    white-space: normal;
+  }
+  .MapActions {
+    top: 6px;
+    right: 6px;
+    gap: 4px;
+  }
+  .wf-search {
+    bottom: 10px;
+    left: 8px;
+    max-width: calc(100% - 16px);
+  }
+  .wf-forecast {
+    margin: 8px;
+  }
+  .wf-forecast > div {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+  .forecast-card {
+    margin: 6px;
+    min-height: 150px;
+    font-size: 14px;
+  }
+  .TopRight .wf-favourites ul {
+    gap: 6px;
+  }
+}
