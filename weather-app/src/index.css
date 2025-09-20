@@ -74,60 +74,10 @@ button:focus-visible {
 
 .TopRow {
   display: flex;
-
-  @media (max-width: 700px),
-  (max-aspect-ratio: 3/4) {
-    .TopRow {
-      flex-direction: column;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .LeftCol {
-      display: contents;
-    }
-
-    .Map {
-      order: 1;
-      margin-left: 0;
-      align-self: center;
-    }
-
-    .TopRight {
-      order: 2;
-      padding-left: 0;
-      margin-left: 0;
-      align-items: center;
-      width: 100%;
-    }
-
-    .TopRight::before {
-      display: none;
-    }
-
-    .Weather {
-      order: 3;
-      width: 100%;
-    }
-
-    .leaflet-container {
-      width: clamp(300px, 80vmin, 900px);
-      height: clamp(220px, 48vmin, 420px);
-    }
-
-    .wf-forecast {
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .wf-forecast>div {
-      justify-items: center;
-    }
-  }
-
-  margin-left: 8px;
-  align-self: flex-start;
+  gap: 12px;
+  align-items: flex-start;
 }
+
 
 .leaflet-container {
   width: clamp(300px, 80vmin, 900px);
@@ -403,38 +353,3 @@ button:focus-visible {
 }
 
 
-@media (max-width: 700px),
-(max-aspect-ratio: 3/4) {
-  .TopRow {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .LeftCol {
-    display: contents;
-  }
-
-  .Map {
-    order: 1;
-  }
-
-  .TopRight {
-    order: 2;
-    padding-left: 0;
-    margin-left: 0;
-  }
-
-  .TopRight::before {
-    display: none;
-  }
-
-  .Weather {
-    order: 3;
-  }
-
-  /* Keep map size as-is */
-  .leaflet-container {
-    width: clamp(300px, 80vmin, 900px);
-    height: clamp(220px, 48vmin, 420px);
-  }
-}
