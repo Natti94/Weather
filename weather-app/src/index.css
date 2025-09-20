@@ -78,6 +78,68 @@ button:focus-visible {
   align-items: flex-start;
 }
 
+.TopRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .5rem;
+  position: relative;
+  padding-top: 8px;
+  padding-left: 12px;
+  margin-left: 6px;
+}
+
+.TopRight::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255, 255, 255, .15);
+}
+
+.DividerH {
+  width: 100%;
+  border: none;
+  height: 1px;
+  background: rgba(255, 255, 255, .15);
+  margin: .5rem 0;
+}
+
+.TopRight .location-button {
+  white-space: nowrap;
+  border: var(--card-border);
+}
+
+.TopRight .location-button:hover {
+  border-color: rgba(255, 255, 255, .25);
+}
+
+.ControlsAndMap {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: .9rem;
+  align-items: start;
+}
+
+.Controls {
+  grid-area: controls;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  align-items: flex-start;
+}
+
+.Map {
+  grid-area: map;
+  position: relative;
+  display: block;
+  margin-top: 8px;
+  margin-left: 8px;
+  align-self: flex-start;
+}
+
 
 .leaflet-container {
   width: clamp(300px, 80vmin, 900px);
@@ -351,4 +413,3 @@ button:focus-visible {
 .wf-favourites.compact .fav-name {
   text-align: center;
 }
-
