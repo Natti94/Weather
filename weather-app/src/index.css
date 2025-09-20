@@ -415,53 +415,65 @@ button:focus-visible {
 }
 
 
-@media (max-width: 700px), (max-aspect-ratio: 3/4) {
+@media (max-width: 700px),
+(max-aspect-ratio: 3/4) {
   .TopRow {
-  flex-direction: column;
-  gap: 8px;
+    flex-direction: row;
+    gap: 12px;
   }
+
   .Map {
-  margin: 8px 0 0 0;    
-  padding: 0 8px;       
-  align-self: stretch;
+    margin: 8px 0 0 8px;
+    padding: 0;
+    align-self: flex-start;
   }
+
   .leaflet-container {
-    width: 100%;
-    height: clamp(240px, 52vh, 520px);
+    width: clamp(300px, 80vmin, 900px);
+    height: clamp(220px, 48vmin, 420px);
   }
+
   .TopRight {
-    padding-top: 0;
-    padding-left: 0;
-    margin-left: 0;
+    padding-top: 8px;
+    padding-left: 12px;
+    margin-left: 6px;
   }
+
   .TopRight::before {
-    display: none;
+    display: block;
   }
+
   .TopRight .location-button {
-    white-space: normal;
+    white-space: nowrap;
   }
+
   .MapActions {
-    top: 6px;
-    right: 6px;
-    gap: 4px;
+    top: 8px;
+    right: 8px;
+    gap: 6px;
   }
+
   .wf-search {
-    bottom: 10px;
-    left: 8px;
+    bottom: 20px;
+    left: 10px;
     max-width: calc(100% - 16px);
   }
+
   .wf-forecast {
-    margin: 8px;
+    margin: 10px;
   }
-  .wf-forecast > div {
-  grid-template-columns: 1fr;  
+
+  .wf-forecast>div {
+    grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
   }
+
   .forecast-card {
-    margin: 6px;
-    min-height: 150px;
-    font-size: 14px;
+    margin: 8px;
+    min-height: var(--card-min-height);
+    font-size: 15px;
   }
+
   .TopRight .wf-favourites ul {
-    gap: 6px;
+    gap: 8px;
   }
 }
